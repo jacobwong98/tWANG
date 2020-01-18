@@ -15,6 +15,7 @@ const GRAVITY = 70
 const MAX_FALL_SPEED = 1000
 
 var velocity = Vector2()
+var accel
 var double_jump_flag = false
 func get_input():
 	var grounded = is_on_floor()
@@ -24,9 +25,9 @@ func get_input():
 	
 	# left and right movement
 	if Input.is_action_pressed("right"):
-		velocity.x += MOVE_SPEED
+		velocity.x = MOVE_SPEED
 	if Input.is_action_pressed("left"):
-		velocity.x -= MOVE_SPEED
+		velocity.x = -MOVE_SPEED
 	
 	# jump
 	if not double_jump_flag and Input.is_action_just_pressed('jump'):
@@ -36,8 +37,10 @@ func get_input():
 			double_jump_flag = true
 	if Input.is_action_pressed('quit'):
 		get_tree().quit()
-
+	
+	# gravity is always present (maybe)
 	velocity.y += GRAVITY
+	
 	# you've hit your head!
 	if bonked:
 		velocity.y = 1
