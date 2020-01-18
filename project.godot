@@ -19,6 +19,10 @@ config/name="tWANG"
 run/main_scene="res://Scenes/World.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Network="*res://Scripts/Network.gd"
+
 [rendering]
 
 environment/default_environment="res://default_env.tres"
