@@ -23,6 +23,11 @@ config/icon="res://icon.png"
 
 Network="*res://Scripts/Network.gd"
 
+[display]
+
+window/size/height=608
+window/size/resizable=false
+
 [rendering]
 
 environment/default_environment="res://default_env.tres"
