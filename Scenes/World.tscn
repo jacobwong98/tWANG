@@ -1,18 +1,66 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Assets/tileset.tres" type="TileSet" id=2]
+[ext_resource path="res://icon.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 1.23851, 79.8968 )
 
 [node name="World" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 84.3101, 527.792 )
 
-[node name="TileMap" type="TileMap" parent="."]
-scale = Vector2( 2, 2 )
-tile_set = ExtResource( 2 )
-cell_size = Vector2( 16, 16 )
-format = 1
-tile_data = PoolIntArray( 0, 26, 0, 31, 24, 0, 65536, 26, 0, 65567, 24, 0, 131072, 26, 0, 131103, 24, 0, 196608, 26, 0, 196639, 24, 0, 262144, 26, 0, 262175, 24, 0, 327680, 26, 0, 327711, 24, 0, 393216, 26, 0, 393247, 24, 0, 458752, 26, 0, 458783, 24, 0, 524288, 26, 0, 524319, 24, 0, 589824, 26, 0, 589855, 24, 0, 655360, 26, 0, 655391, 24, 0, 720896, 26, 0, 720927, 24, 0, 786432, 26, 0, 786463, 24, 0, 851968, 26, 0, 851981, 29, 0, 851982, 29, 0, 851983, 29, 0, 851984, 29, 0, 851985, 29, 0, 851986, 29, 0, 851999, 24, 0, 917504, 26, 0, 917505, 29, 0, 917506, 29, 0, 917507, 29, 0, 917508, 29, 0, 917509, 29, 0, 917530, 29, 0, 917531, 29, 0, 917532, 29, 0, 917533, 29, 0, 917534, 29, 0, 917535, 24, 0, 983040, 26, 0, 983071, 24, 0, 1048576, 26, 0, 1048589, 29, 0, 1048594, 29, 0, 1048607, 24, 0, 1114112, 26, 0, 1114125, 29, 0, 1114130, 29, 0, 1114143, 24, 0, 1179648, 26, 0, 1179649, 14, 0, 1179650, 15, 0, 1179651, 15, 0, 1179652, 15, 0, 1179653, 15, 0, 1179654, 15, 0, 1179655, 15, 0, 1179656, 16, 0, 1179657, 18, 0, 1179658, 14, 0, 1179659, 15, 0, 1179660, 15, 0, 1179661, 15, 0, 1179662, 16, 0, 1179663, 18, 0, 1179664, 18, 0, 1179665, 14, 0, 1179666, 16, 0, 1179667, 14, 0, 1179668, 15, 0, 1179669, 15, 0, 1179670, 15, 0, 1179671, 16, 0, 1179672, 18, 0, 1179673, 18, 0, 1179674, 14, 0, 1179675, 15, 0, 1179676, 15, 0, 1179677, 15, 0, 1179678, 23, 0, 1179679, 24, 0 )
+[node name="box" type="StaticBody2D" parent="."]
+position = Vector2( 918.497, 632.602 )
+
+[node name="collision" type="CollisionShape2D" parent="box"]
+position = Vector2( 30.26, 939.635 )
+scale = Vector2( 751.527, 6.47835 )
+shape = SubResource( 1 )
+one_way_collision_margin = 0.0
+
+[node name="collision2" type="CollisionShape2D" parent="box"]
+position = Vector2( -1824.03, -103.141 )
+scale = Vector2( 751.527, 6.47835 )
+shape = SubResource( 1 )
+one_way_collision_margin = 0.0
+
+[node name="collision3" type="CollisionShape2D" parent="box"]
+position = Vector2( 1905.57, -94.731 )
+scale = Vector2( 751.527, 6.47835 )
+shape = SubResource( 1 )
+one_way_collision_margin = 0.0
+
+[node name="collision4" type="CollisionShape2D" parent="box"]
+position = Vector2( 38.6697, -1133.3 )
+scale = Vector2( 751.527, 6.47835 )
+shape = SubResource( 1 )
+one_way_collision_margin = 0.0
+
+[node name="floor" type="Sprite" parent="box"]
+position = Vector2( 33.3524, 490.671 )
+scale = Vector2( 15.911, 1.04112 )
+texture = ExtResource( 2 )
+normal_map = ExtResource( 2 )
+
+[node name="roof" type="Sprite" parent="box"]
+position = Vector2( 21.8525, -680.738 )
+scale = Vector2( 15.911, 1.04112 )
+texture = ExtResource( 2 )
+normal_map = ExtResource( 2 )
+
+[node name="rightwall" type="Sprite" parent="box"]
+position = Vector2( 1154.04, -79.6658 )
+scale = Vector2( 2.76438, 10.544 )
+texture = ExtResource( 2 )
+normal_map = ExtResource( 2 )
+
+[node name="leftwall" type="Sprite" parent="box"]
+position = Vector2( -1068.64, -85.305 )
+scale = Vector2( 2.76438, 10.544 )
+texture = ExtResource( 2 )
+normal_map = ExtResource( 2 )
