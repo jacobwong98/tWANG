@@ -11,6 +11,7 @@ signal player_disconnected
 signal server_disconnected
 
 func _ready():
+	print('network ready')
 	get_tree().connect('network_peer_disconnected', self, '_on_player_disconnected')
 	get_tree().connect('network_peer_connected', self, '_on_player_connected')
 
@@ -23,6 +24,7 @@ func create_server(player_nickname):
 	get_tree().set_network_peer(peer)
 
 func connect_to_server(player_nickname):
+	print('join server')
 	self_data.name = player_nickname
 	get_tree().connect('connected_to_server', self, '_connected_to_server')
 	var peer = NetworkedMultiplayerENet.new()
