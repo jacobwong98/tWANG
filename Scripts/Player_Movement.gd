@@ -9,10 +9,10 @@ func _process(delta):
 	pass
 
 # export (int) var move_speed = 800
-const MOVE_SPEED = 500
-const JUMP_FORCE = 2500
-const GRAVITY = 70
-const MAX_FALL_SPEED = 1000
+const MOVE_SPEED = 400
+const JUMP_FORCE = 900
+const GRAVITY = 60
+const MAX_FALL_SPEED = 200
 
 var velocity = Vector2()
 var accel
@@ -29,12 +29,18 @@ func get_input():
 	if Input.is_action_pressed("left"):
 		velocity.x = -MOVE_SPEED
 	
+	# reset double jump when on the ground
+	if grounded:
+		velocity.y = 0
+		double_jump_flag = false
+		
 	# jump
 	if not double_jump_flag and Input.is_action_just_pressed('jump'):
 		velocity.y = -JUMP_FORCE
 		
 		if not grounded:
 			double_jump_flag = true
+			
 	if Input.is_action_pressed('quit'):
 		get_tree().quit()
 	
@@ -44,10 +50,6 @@ func get_input():
 	# you've hit your head!
 	if bonked:
 		velocity.y = 1
-		
-	# reset double jump when on the ground
-	if grounded:
-			double_jump_flag = false
 
 func _physics_process(delta):
 	get_input()
