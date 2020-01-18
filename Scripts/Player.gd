@@ -32,3 +32,9 @@ func get_input():
 func _physics_process(delta):
     get_input()
     velocity = move_and_slide(velocity)
+
+func init(nickname, start_position, is_slave):
+	#$GUI/Nickname.text = nickname
+	global_position = start_position
+	if is_slave:
+		$Sprite.texture = load('res://Images/Shrek.jpg')
