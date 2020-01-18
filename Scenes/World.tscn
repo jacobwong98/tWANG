@@ -8,8 +8,7 @@
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 513.998, 292.999 )
-scale = Vector2( 7, 7 )
+position = Vector2( 84.3101, 527.792 )
 
 [node name="TileMap" type="TileMap" parent="."]
 scale = Vector2( 2, 2 )
