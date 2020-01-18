@@ -9,4 +9,3 @@ anchor_mode = 0
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 513.998, 292.999 )
-scale = Vector2( 7, 7 )
