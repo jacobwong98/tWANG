@@ -25,8 +25,9 @@ Network="*res://Scripts/Network.gd"
 
 [display]
 
-window/size/height=608
 window/size/resizable=false
+window/size/fullscreen=true
+window/stretch/mode="viewport"
 
 [input]
 
