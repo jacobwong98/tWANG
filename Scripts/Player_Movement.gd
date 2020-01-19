@@ -25,7 +25,9 @@ var double_jump_flag = false
 var shooting = false
 var arrow_count = 0
 
+# gets and handles inputs
 func get_input():
+	# check collisions
 	var grounded = is_on_floor()
 	var walled = is_on_wall()
 	var bonked = is_on_ceiling()
@@ -81,6 +83,7 @@ func get_input():
 	if bonked:
 		velocity.y = 1
 
+# shoot an arrow
 func try_shooting():
 	if Input.is_action_pressed("shoot"):
 		if not shooting and arrow_count < 3:
