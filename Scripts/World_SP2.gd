@@ -2,6 +2,7 @@ extends Node2D
 
 var shake_amount = 1.0
 var shaking = false
+var reset_shake = false
 
 var PlayerScene = preload("res://Scenes/Player.tscn")
 var player
@@ -18,6 +19,8 @@ var arrows_gone = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$ShakeCameraTimer.connect("timeout", self, "_on_ShakeCameraTimer_timeout")
+	
+	
 	
 	# Pretend we are in an network and set up the player as master
 	player = PlayerScene.instance()
@@ -38,10 +41,15 @@ func _ready():
 
 func _process(delta):
 	if shaking:
-	    $Camera2D.set_offset(Vector2( \
+		reset_shake = false
+		$Camera2D.set_offset(Vector2( \
 	        512 + rand_range(-1.0, 1.0) * shake_amount, \
 	        300 + rand_range(-1.0, 1.0) * shake_amount \
 	    ))
+	else:
+		if not reset_shake:
+			reset_shake = true
+			$Camera2D.set_offset(Vector2(512, 300))
 	
 	if level_complete:
 		if not do_once:

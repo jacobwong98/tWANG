@@ -2,6 +2,7 @@ extends Node2D
 
 var shake_amount = 1.0
 var shaking = false
+var reset_shake = false
 
 var PlayerScene = preload("res://Scenes/Player.tscn")
 var player
@@ -31,11 +32,16 @@ func _ready():
 
 func _process(delta):
 	if shaking:
-	    $Camera2D.set_offset(Vector2( \
+		reset_shake = false
+		$Camera2D.set_offset(Vector2( \
 	        512 + rand_range(-1.0, 1.0) * shake_amount, \
 	        300 + rand_range(-1.0, 1.0) * shake_amount \
 	    ))
-	
+	else:
+		if not reset_shake:
+			reset_shake = true
+			$Camera2D.set_offset(Vector2(512, 300))
+			
 	if level_complete:
 		if not do_once:
 			do_once = true
