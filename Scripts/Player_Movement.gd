@@ -9,12 +9,12 @@ func _process(delta):
 	pass
 
 # export (int) var move_speed = 800
-const MAX_MOVE_SPEED = 400
-const MAX_FALL_SPEED = 200
+const MAX_MOVE_SPEED = 600
+const MAX_FALL_SPEED = 400
 const ACCELERATION = 70
 const DECELERATION = 70
 const GRAVITY = 60
-const JUMP_FORCE = 900
+const JUMP_FORCE = 1100
 
 
 var velocity = Vector2()
@@ -79,7 +79,7 @@ func get_input():
 
 func _physics_process(delta):
 	get_input()
-  var slide = move_and_slide(velocity, Vector2(0, -1))
+	move_and_slide(velocity, Vector2(0, -1))
 
 func init(nickname, start_position, is_slave):
 	#$GUI/Nickname.text = nickname
