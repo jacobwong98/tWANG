@@ -5,10 +5,10 @@
 [ext_resource path="res://Scripts/Bow.gd" type="Script" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 25, 25 )
+extents = Vector2( 10.8228, 25 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 16.9836, 24.3571 )
+extents = Vector2( 11.6385, 24.3571 )
 
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 1 )
