@@ -2,7 +2,9 @@ extends KinematicBody2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#connect("arrow_pickup", self, "_on_arrow_pickup")
+	$ArrowCooldown.connect("timeout", self, "_on_ArrowCooldown_timeout")
+	$ChargeTimer.connect("timeout", self, "_on_ChargeTimer_timeout")
+	
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -11,18 +13,20 @@ func _process(delta):
 
 # export (int) var move_speed = 800
 
-const MAX_MOVE_SPEED = 600
+const MAX_MOVE_SPEED = 250
 const MAX_FALL_SPEED = 400
-const ACCELERATION = 70
-const DECELERATION = 70
-const GRAVITY = 60
-const JUMP_FORCE = 1100
+const ACCELERATION = 40
+const DECELERATION = 50
+const GRAVITY = 40
+const JUMP_FORCE = 650
 
 var velocity = Vector2()
 var accel = 0
 var double_jump_flag = false
 
+var start_shoot = false
 var shooting = false
+var power_level = 0
 var arrow_count = 0
 
 # gets and handles inputs
@@ -86,16 +90,33 @@ func get_input():
 # shoot an arrow
 func try_shooting():
 	if Input.is_action_pressed("shoot"):
-		if not shooting and arrow_count < 3:
+		if not $ArrowChargePivot/ArrowCharge.visible:
+			$ArrowChargePivot/ArrowCharge.show()
+			$ChargeTimer.start()
+			start_shoot = true
+		
+		# Get local mouse pos then set arrowcharge angle to it
+		var mouse_pos = get_local_mouse_position()
+		$ArrowChargePivot.rotation = mouse_pos.angle() + PI/2
+		
+		$ArrowChargePivot/ArrowCharge.set_scale(Vector2(0.12*power_level/4,0.12*power_level/4)) 
+	
+	else:
+		if not shooting and start_shoot and arrow_count < 3:
+			start_shoot = false
 			shooting = true
 			arrow_count += 1
-			#print("shoot")
-			$Bow.shoot_arrow(get_position(), get_global_mouse_position(), 1)
+			
+			$Bow.shoot_arrow(get_position(), get_global_mouse_position(), power_level/4.0)
+			$ArrowCooldown.start()
+		else:
+			# Have to do this because start_shoot doesnt reset any other way
+			start_shoot = false
+			pass
+		$ArrowChargePivot/ArrowCharge.hide()
+		power_level = 1
+		$ChargeTimer.stop()
 		pass
-	else:
-		shooting = false
-	pass
-	#print($Quiver.get_child_count())
 
 func _physics_process(delta):
 	get_input()
@@ -116,3 +137,14 @@ func init(nickname, start_position, is_slave):
 	if is_slave:
 		global_position = start_position + Vector2(400, 0)
 		$Sprite.texture = load('res://Images/Shrek.jpg')
+
+func _on_ChargeTimer_timeout():
+	$ChargeTimer.start()
+	power_level += 1
+	if power_level > 4:
+		power_level = 4
+	pass
+
+func _on_ArrowCooldown_timeout():
+	shooting = false
+	pass

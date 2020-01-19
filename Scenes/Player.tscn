@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scripts/Player_Movement.gd" type="Script" id=1]
 [ext_resource path="res://Assets/person.png" type="Texture" id=2]
 [ext_resource path="res://Scripts/Bow.gd" type="Script" id=3]
+[ext_resource path="res://Assets/arrow_charge.png" type="Texture" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10.8228, 25 )
@@ -29,3 +30,20 @@ script = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource( 2 )
+
+[node name="ArrowChargePivot" type="Node2D" parent="."]
+rotation = 0.862193
+
+[node name="ArrowCharge" type="Sprite" parent="ArrowChargePivot"]
+position = Vector2( 0, -50 )
+rotation = -1.5708
+scale = Vector2( 0.08, 0.08 )
+texture = ExtResource( 4 )
+
+[node name="ChargeTimer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
+[node name="ArrowCooldown" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
