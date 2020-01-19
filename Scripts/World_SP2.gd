@@ -20,7 +20,12 @@ var arrows_gone = 0
 func _ready():
 	$ShakeCameraTimer.connect("timeout", self, "_on_ShakeCameraTimer_timeout")
 	
-	
+	var color = "856E94"
+	$Node2D/skybox.modulate = Color(color)
+	$Node2D/leftcloud.modulate = Color(color)
+	$Node2D/rightcloud.modulate = Color(color)
+	$Node2D/midground.modulate = Color(color)
+	$Node2D/foreground.modulate = Color(color)
 	
 	# Pretend we are in an network and set up the player as master
 	player = PlayerScene.instance()

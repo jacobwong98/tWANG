@@ -7,8 +7,9 @@ signal injured
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	randomize()
-	randomize()
-	randomize()
+	randi()
+	randi()
+	randi()
 	$Sprite.modulate = Color("FF0000")
 	
 	$ChargeTimer.connect("timeout", self, "_on_ChargeTimer_timeout")

@@ -17,6 +17,13 @@ var do_once = false
 func _ready():
 	$ShakeCameraTimer.connect("timeout", self, "_on_ShakeCameraTimer_timeout")
 	
+	var color = "FFD700"
+	$Node2D/skybox.modulate = Color(color)
+	$Node2D/leftcloud.modulate = Color(color)
+	$Node2D/rightcloud.modulate = Color(color)
+	$Node2D/midground.modulate = Color(color)
+	$Node2D/foreground.modulate = Color(color)
+	
 	# Pretend we are in an network and set up the player as master
 	player = PlayerScene.instance()
 	player.init("ttt", Vector2(250, 250), false)

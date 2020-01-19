@@ -11,34 +11,50 @@ position = Vector2( -1.05261, 0 )
 texture = ExtResource( 2 )
 offset = Vector2( 512, 300 )
 
-[node name="JoinButton" type="Button" parent="."]
-margin_left = 788.947
-margin_top = 505.0
-margin_right = 880.947
-margin_bottom = 553.0
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_left = 295.0
+margin_top = 500.639
+margin_right = 730.0
+margin_bottom = 600.639
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+margin_right = 435.0
+margin_bottom = 14.0
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "                     LOBBY                               SINGLE PLAYER"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 18.0
+margin_right = 435.0
+margin_bottom = 38.0
+rect_pivot_offset = Vector2( 160.244, 53.8543 )
+alignment = 1
+
+[node name="JoinButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+margin_left = 54.0
+margin_right = 95.0
+margin_bottom = 20.0
 text = "JOIN"
 
-[node name="CreateButton" type="Button" parent="."]
-margin_left = 788.263
-margin_top = 452.789
-margin_right = 880.263
-margin_bottom = 498.789
+[node name="CreateButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+margin_left = 99.0
+margin_right = 157.0
+margin_bottom = 20.0
 text = "CREATE"
 
-[node name="SPButton" type="Button" parent="."]
-margin_left = 485.333
-margin_top = 508.541
-margin_right = 625.333
-margin_bottom = 528.541
+[node name="SPButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+margin_left = 161.0
+margin_right = 301.0
+margin_bottom = 20.0
 text = "BREAK THE TARGETS"
 
-[node name="SPButton2" type="Button" parent="."]
-margin_left = 637.263
-margin_top = 480.368
-margin_right = 780.263
-margin_bottom = 554.368
+[node name="SPButton2" type="Button" parent="VBoxContainer/HBoxContainer"]
+margin_left = 305.0
+margin_right = 381.0
+margin_bottom = 20.0
 text = "VS GHOST"
-[connection signal="pressed" from="JoinButton" to="." method="_on_JoinButton_pressed"]
-[connection signal="pressed" from="CreateButton" to="." method="_on_CreateButton_pressed"]
-[connection signal="pressed" from="SPButton" to="." method="_on_SPButton_pressed"]
-[connection signal="pressed" from="SPButton2" to="." method="_on_SPButton2_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/JoinButton" to="." method="_on_JoinButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/CreateButton" to="." method="_on_CreateButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/SPButton" to="." method="_on_SPButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/SPButton2" to="." method="_on_SPButton2_pressed"]
