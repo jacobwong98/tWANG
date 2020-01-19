@@ -19,7 +19,8 @@ var ready = false
 var is_grounded = false
 var is_stuck = false
 
-var is_picked = false
+# Used to remove arrows from ground
+var lift_out = false
 
 func _ready():
 	$StuckTimer.connect("timeout", self, "_on_StuckTimer_timeout")
@@ -37,7 +38,13 @@ func _physics_process(delta):
 		
 		move_and_slide(speed, Vector2.UP)
 		
-		if is_on_floor() or is_on_ceiling():
+		if is_on_floor():
+			ready = false
+			is_grounded = true
+			lift_out = true
+			pass
+		
+		if is_on_ceiling():
 			ready = false
 			is_grounded = true
 			pass
@@ -52,9 +59,6 @@ func _physics_process(delta):
 		if not is_stuck:
 			is_stuck = true
 			$StuckTimer.start()
-		pass
-	
-	if is_picked:
 		pass
 	pass
 
@@ -72,7 +76,11 @@ func _on_StuckTimer_timeout():
 	var a = ACScene.instance()
 	a.connect("arrow_pickup", get_parent().get_parent(), "_on_arrow_pickup")
 	
-	a.set_position(get_position())
+	if lift_out:
+		a.set_position(get_position() + Vector2(0, -10))
+	else:
+		a.set_position(get_position())
+	
 	var par = get_parent().get_parent().get_parent()
 	#print(par.name)
 	par.add_child(a)
