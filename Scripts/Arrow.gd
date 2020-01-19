@@ -24,6 +24,9 @@ var lift_out = false
 
 func _ready():
 	$StuckTimer.connect("timeout", self, "_on_StuckTimer_timeout")
+	
+	#Enable particles when ready
+	$Particles2D.show()
 	pass
 
 func _process(delta):
@@ -62,9 +65,8 @@ func _physics_process(delta):
 		pass
 	pass
 
-func setup(dir_o, power):	
+func setup(dir_o, power):
 	# Note, power must be a float between 0 and 1
-	print(power)
 	velocity = MAX_SPEED * power
 	
 	dir = dir_o
@@ -78,7 +80,7 @@ func _on_StuckTimer_timeout():
 	a.connect("arrow_pickup", get_parent().get_parent(), "_on_arrow_pickup")
 	
 	if lift_out:
-		a.set_position(get_position() + Vector2(0, -10))
+		a.set_position(get_position() + Vector2(0, -20))
 	else:
 		a.set_position(get_position())
 	

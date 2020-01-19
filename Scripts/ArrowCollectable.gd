@@ -2,6 +2,9 @@ extends KinematicBody2D
 
 signal arrow_pickup
 
+const GRAVITY = 10
+var vely = 20
+
 var is_picked = false
 var offset = 0
 var offset_dir = 1
@@ -10,17 +13,16 @@ var offset_dir = 1
 func _ready():
 	$Sprite.modulate = Color("FF6655")
 	$Area2D.connect("area_entered", self, "_on_Area2D_area_entered")
-	
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+	if is_on_wall() or is_on_floor():
+		set_position(get_position()+Vector2(0, -20))
 
 func _physics_process(delta):
-	move_and_slide(Vector2(0, 150), Vector2.UP)
+	vely += GRAVITY
+	move_and_slide(Vector2(0, vely), Vector2.UP)
 	
 	if is_on_floor():
+		vely = 0
 		$Sprite.set_position($Sprite.get_position() + Vector2(offset,0))
-		#print(offset)
 		if offset_dir == 1:
 			offset += 0.1
 		elif offset_dir == -1:

@@ -104,7 +104,7 @@ func moveChar(velocity):
 
 # shoot an arrow
 func try_shooting():
-	if Input.is_action_pressed("shoot"):
+	if Input.is_action_pressed("shoot") and arrow_count < 3:
 		if not $ArrowChargePivot/ArrowCharge.visible:
 			$ArrowChargePivot/ArrowCharge.show()
 			$ChargeTimer.start()
