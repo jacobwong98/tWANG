@@ -43,7 +43,9 @@ func _physics_process(delta):
 			pass
 		
 		if is_on_wall():
-			speed.x *= 0
+			speed.x = 0
+			ready = false
+			is_grounded = true
 			pass
 	
 	if is_grounded:
