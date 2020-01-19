@@ -4,7 +4,7 @@ const DEFAULT_IP = '127.0.0.1'
 const DEFAULT_PORT = 12345
 const MAX_PLAYERS = 2
 
-var players = { }
+var players = {}
 var self_data = { name = '', position = Vector2(360, 180) }
 
 signal player_disconnected
