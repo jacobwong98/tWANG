@@ -21,3 +21,9 @@ func _on_SPButton_pressed():
 	Network.create_server("DEAD")
 	get_tree().change_scene("res://Scenes/World_SP1.tscn")
 	pass # Replace with function body.
+
+
+func _on_SPButton2_pressed():
+	Network.create_server("DEAD2")
+	get_tree().change_scene("res://Scenes/World_SP2.tscn")
+	pass # Replace with function body.

@@ -21,11 +21,19 @@ text = "Create"
 icon = ExtResource( 2 )
 
 [node name="SPButton" type="Button" parent="."]
-margin_left = 287.867
-margin_top = 304.826
-margin_right = 316.867
-margin_bottom = 324.826
-text = "SINGLE PLAYER"
+margin_left = 540.12
+margin_top = 71.1435
+margin_right = 680.12
+margin_bottom = 91.1435
+text = "BREAK THE TARGETS"
+
+[node name="SPButton2" type="Button" parent="."]
+margin_left = 765.292
+margin_top = 77.3337
+margin_right = 905.292
+margin_bottom = 97.3337
+text = "VS AI"
 [connection signal="pressed" from="JoinButton" to="." method="_on_JoinButton_pressed"]
 [connection signal="pressed" from="CreateButton" to="." method="_on_CreateButton_pressed"]
 [connection signal="pressed" from="SPButton" to="." method="_on_SPButton_pressed"]
+[connection signal="pressed" from="SPButton2" to="." method="_on_SPButton2_pressed"]

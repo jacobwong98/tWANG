@@ -84,7 +84,8 @@ func _on_StuckTimer_timeout():
 	else:
 		a.set_position(get_position())
 	
-	var par = get_parent().get_parent().get_parent()
+	var par = get_parent().get_parent().get_parent().get_node("CollectableArrows")
+	a.connect("arrow_gone", par, "_on_arrow_gone")
 	#print(par.name)
 	par.add_child(a)
 	
