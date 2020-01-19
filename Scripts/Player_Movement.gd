@@ -11,7 +11,16 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	if Input.is_action_pressed("right"):
+		get_node("Sprite").set_flip_h(true)
+		$AnimationPlayer.play("walk")
+	elif Input.is_action_pressed("left"):
+		get_node("Sprite").set_flip_h(false)
+		$AnimationPlayer.play("walk")
+	else:
+		$AnimationPlayer.stop()
+		print("stopping")
+
 
 # export (int) var move_speed = 800
 
