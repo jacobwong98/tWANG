@@ -17,6 +17,9 @@ const MAX_FALL_SPEED = 200
 var velocity = Vector2()
 var accel
 var double_jump_flag = false
+
+var shooting = false
+
 func get_input():
 	var grounded = is_on_floor()
 	var bonked = is_on_ceiling()
@@ -51,7 +54,20 @@ func get_input():
 	if bonked:
 		velocity.y = 1
 
+func try_shooting():
+	if Input.is_action_pressed("shoot"):
+		if not shooting and $Quiver.get_child_count() < 3:
+			shooting = true
+			print("shoot")
+			$Bow.shoot_arrow(get_position(), get_global_mouse_position(), 1)
+		pass
+	else:
+		shooting = false
+	pass
+	print($Quiver.get_child_count())
+
 func _physics_process(delta):
 	get_input()
-
+	try_shooting()
+	
 	move_and_slide(velocity, Vector2(0, -1))
