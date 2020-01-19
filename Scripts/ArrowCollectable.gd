@@ -13,11 +13,8 @@ var offset_dir = 1
 func _ready():
 	$Sprite.modulate = Color("FF6655")
 	$Area2D.connect("area_entered", self, "_on_Area2D_area_entered")
-	if is_on_wall():
-		set_position(get_position()+Vector2(0, -15))
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+	if is_on_wall() or is_on_floor():
+		set_position(get_position()+Vector2(0, -20))
 
 func _physics_process(delta):
 	vely += GRAVITY
