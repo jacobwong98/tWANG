@@ -7,21 +7,30 @@
 script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -1.05261, 0 )
 texture = ExtResource( 2 )
 offset = Vector2( 512, 300 )
 
 [node name="JoinButton" type="Button" parent="."]
-margin_left = 810.0
-margin_top = 502.0
-margin_right = 882.0
-margin_bottom = 543.0
+margin_left = 788.947
+margin_top = 505.0
+margin_right = 880.947
+margin_bottom = 553.0
 text = "JOIN"
 
 [node name="CreateButton" type="Button" parent="."]
-margin_left = 668.551
-margin_top = 487.55
-margin_right = 775.551
-margin_bottom = 544.55
+margin_left = 788.263
+margin_top = 452.789
+margin_right = 880.263
+margin_bottom = 498.789
 text = "CREATE"
+
+[node name="SPButton" type="Button" parent="."]
+margin_left = 637.263
+margin_top = 480.368
+margin_right = 780.263
+margin_bottom = 554.368
+text = "SINGLE PLAYER"
 [connection signal="pressed" from="JoinButton" to="." method="_on_JoinButton_pressed"]
 [connection signal="pressed" from="CreateButton" to="." method="_on_CreateButton_pressed"]
+[connection signal="pressed" from="SPButton" to="." method="_on_SPButton_pressed"]
