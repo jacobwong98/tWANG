@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scripts/Arrow.gd" type="Script" id=1]
-[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://Assets/arrow.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 30, 10 )
@@ -15,10 +15,12 @@ script = ExtResource( 1 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
-scale = Vector2( 0.45, 0.15 )
+scale = Vector2( -1, 1 )
 texture = ExtResource( 2 )
 
 [node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShapeHitbox" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource( 1 )

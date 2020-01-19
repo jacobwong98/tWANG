@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+var ACScene = preload("res://Scenes/ArrowCollectable.tscn")
+
 const MAX_SPEED = 750
 const GRAVITY = 10
 
@@ -65,7 +67,14 @@ func setup(dir_o, power):
 	pass
 
 func _on_StuckTimer_timeout():
+	var a = ACScene.instance()
+	a.connect("arrow_pickup", get_parent().get_parent(), "_on_arrow_pickup")
+	
+	a.set_position(get_position())
+	var par = get_parent().get_parent().get_parent()
+	#print(par.name)
+	par.add_child(a)
+	
 	queue_free()
 	is_grounded = false
-	is_picked = true
 	pass # Replace with function body.
