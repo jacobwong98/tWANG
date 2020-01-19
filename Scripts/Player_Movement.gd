@@ -111,33 +111,34 @@ func moveChar(velocity):
 
 # shoot an arrow
 func try_shooting():
-	if Input.is_action_pressed("shoot") and arrow_count < 3:
-		if not $ArrowChargePivot/ArrowCharge.visible:
-			$ArrowChargePivot/ArrowCharge.show()
-			$ChargeTimer.start()
-			start_shoot = true
-		
-		# Get local mouse pos then set arrowcharge angle to it
-		var mouse_pos = get_local_mouse_position()
-		$ArrowChargePivot.rotation = mouse_pos.angle() + PI/2
-		
-		$ArrowChargePivot/ArrowCharge.set_scale(Vector2(0.12*power_level/4,0.12*power_level/4)) 
-	
-	else:
-		if not shooting and start_shoot and arrow_count < 3:
-			start_shoot = false
-			shooting = true
-			arrow_count += 1
+	if is_network_master():
+		if Input.is_action_pressed("shoot") and arrow_count < 3:
+			if not $ArrowChargePivot/ArrowCharge.visible:
+				$ArrowChargePivot/ArrowCharge.show()
+				$ChargeTimer.start()
+				start_shoot = true
 			
-			$Bow.shoot_arrow(get_position(), get_global_mouse_position(), power_level/4.0)
-			$ArrowCooldown.start()
+			# Get local mouse pos then set arrowcharge angle to it
+			var mouse_pos = get_local_mouse_position()
+			$ArrowChargePivot.rotation = mouse_pos.angle() + PI/2
+			
+			$ArrowChargePivot/ArrowCharge.set_scale(Vector2(0.12*power_level/4,0.12*power_level/4)) 
+		
 		else:
-			# Have to do this because start_shoot doesnt reset any other way
-			start_shoot = false
-			pass
-		$ArrowChargePivot/ArrowCharge.hide()
-		power_level = 1
-		$ChargeTimer.stop()
+			if not shooting and start_shoot and arrow_count < 3:
+				start_shoot = false
+				shooting = true
+				arrow_count += 1
+				
+				$Bow.shoot_arrow(get_position(), get_global_mouse_position(), power_level/4.0)
+				$ArrowCooldown.start()
+			else:
+				# Have to do this because start_shoot doesnt reset any other way
+				start_shoot = false
+				pass
+			$ArrowChargePivot/ArrowCharge.hide()
+			power_level = 1
+			$ChargeTimer.stop()
 		pass
 
 func _physics_process(delta):
