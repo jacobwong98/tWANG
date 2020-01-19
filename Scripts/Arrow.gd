@@ -64,7 +64,6 @@ func _physics_process(delta):
 
 func setup(dir_o, power):	
 	# Note, power must be a float between 0 and 1
-	print(power)
 	velocity = MAX_SPEED * power
 	
 	dir = dir_o
