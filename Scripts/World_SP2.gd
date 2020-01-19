@@ -47,6 +47,7 @@ func _process(delta):
 		if not do_once:
 			do_once = true
 			player.queue_free()
+			enemy.queue_free()
 			$HUD/Label.show()
 		
 		if Input.is_action_pressed("OK"):

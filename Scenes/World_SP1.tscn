@@ -97,3 +97,5 @@ text = "CHALLENGE COMPLETE
 
 PRESS Q TO CONTINUE"
 align = 1
+
+[node name="CollectableArrows" type="Node" parent="."]

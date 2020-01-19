@@ -52,3 +52,5 @@ tile_data = PoolIntArray( -458754, 536870923, 0, -458753, 536870923, 0, -524288,
 [node name="ShakeCameraTimer" type="Timer" parent="."]
 wait_time = 0.2
 one_shot = true
+
+[node name="CollectableArrows" type="Node" parent="."]

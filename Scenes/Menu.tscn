@@ -26,18 +26,18 @@ margin_bottom = 498.789
 text = "CREATE"
 
 [node name="SPButton" type="Button" parent="."]
+margin_left = 485.333
+margin_top = 508.541
+margin_right = 625.333
+margin_bottom = 528.541
+text = "BREAK THE TARGETS"
 
 [node name="SPButton2" type="Button" parent="."]
-margin_left = 765.292
-margin_top = 77.3337
-margin_right = 905.292
-margin_bottom = 97.3337
-text = "VS AI"
 margin_left = 637.263
 margin_top = 480.368
 margin_right = 780.263
 margin_bottom = 554.368
-text = "SINGLE PLAYER"
+text = "VS GHOST"
 [connection signal="pressed" from="JoinButton" to="." method="_on_JoinButton_pressed"]
 [connection signal="pressed" from="CreateButton" to="." method="_on_CreateButton_pressed"]
 [connection signal="pressed" from="SPButton" to="." method="_on_SPButton_pressed"]
