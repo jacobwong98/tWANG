@@ -89,7 +89,7 @@ func try_shooting():
 		if not shooting and arrow_count < 3:
 			shooting = true
 			arrow_count += 1
-			print("shoot")
+			#print("shoot")
 			$Bow.shoot_arrow(get_position(), get_global_mouse_position(), 1)
 		pass
 	else:
@@ -104,7 +104,7 @@ func _physics_process(delta):
 	var slide = move_and_slide(velocity, Vector2(0, -1))
 
 func _on_arrow_pickup():
-	print("ARROW PICKED UP")
+	#print("ARROW PICKED UP")
 	arrow_count -= 1
 	if arrow_count < 0:
 		arrow_count = 0
