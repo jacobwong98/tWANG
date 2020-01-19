@@ -79,7 +79,7 @@ func get_input():
 
 func _physics_process(delta):
 	get_input()
-  var slide = move_and_slide(velocity, Vector2(0, -1))
+	var slide = move_and_slide(velocity, Vector2(0, -1))
 
 func init(nickname, start_position, is_slave):
 	#$GUI/Nickname.text = nickname
