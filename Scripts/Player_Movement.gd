@@ -20,6 +20,8 @@ const DECELERATION = 50
 const GRAVITY = 40
 const JUMP_FORCE = 650
 
+slave var slave_position = Vector2()
+
 var velocity = Vector2()
 var accel = 0
 var double_jump_flag = false
@@ -87,6 +89,19 @@ func get_input():
 	if bonked:
 		velocity.y = 1
 
+func moveChar(velocity):
+	if is_network_master():
+		rset_unreliable('slave_position', position)
+		move_and_slide(velocity, Vector2(0, -1))
+	else:
+		move_and_slide(velocity, Vector2(0, -1))
+		position = slave_position
+	if get_tree().is_network_server():
+		var id = int(name)
+		if id == 0:
+			id += 1 
+		Network.update_position(id, position)
+
 # shoot an arrow
 func try_shooting():
 	if Input.is_action_pressed("shoot"):
@@ -121,8 +136,9 @@ func try_shooting():
 func _physics_process(delta):
 	get_input()
 	try_shooting()
-	move_and_slide(velocity, Vector2(0, -1))
-	var slide = move_and_slide(velocity, Vector2(0, -1))
+	#move_and_slide(velocity, Vector2(0, -1))
+	#var slide = move_and_slide(velocity, Vector2(0, -1))
+	moveChar(velocity)
 
 func _on_arrow_pickup():
 	#print("ARROW PICKED UP")
@@ -131,11 +147,12 @@ func _on_arrow_pickup():
 		arrow_count = 0
 	pass
 
+
 func init(nickname, start_position, is_slave):
 	#$GUI/Nickname.text = nickname
 	global_position = start_position
 	if is_slave:
-		global_position = start_position + Vector2(400, 0)
+		global_position = start_position + Vector2(600, 200)
 		$Sprite.texture = load('res://Images/Shrek.jpg')
 
 func _on_ChargeTimer_timeout():

@@ -6,12 +6,12 @@ extends Node2D
 
 func _on_JoinButton_pressed():
 	print("Joining")
-	Network.connect_to_server("Player 2")
+	Network.connect_to_server("Shrek")
 	_load_game()
 
 func _on_CreateButton_pressed():
 	print("Creating")
-	Network.create_server("Player 1")
+	Network.create_server("Not Shrek")
 	_load_game()
 
 func _load_game():
