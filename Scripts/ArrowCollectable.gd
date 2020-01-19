@@ -6,18 +6,20 @@ var is_picked = false
 var offset = 0
 var offset_dir = 1
 
+var ground_pos = Vector2()
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$Sprite.modulate = Color("526dd4")
+	$Sprite.modulate = Color("FF6655")
 	$Area2D.connect("area_entered", self, "_on_Area2D_area_entered")
-	pass # Replace with function body.
-
+	ground_pos = get_position() + Vector2(0, -15)
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
 
 func _physics_process(delta):
-	set_position(get_position() + Vector2(0, offset))
+	set_position(ground_pos + Vector2(0, offset))
 	#print(offset)
 	if offset_dir == 1:
 		offset += 0.1
