@@ -10,19 +10,6 @@ func _ready():
 	$Area2D.connect("area_entered", self, "_on_Area2D_area_entered")
 	pass # Replace with function body.
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	if Input.is_action_pressed("right"):
-		get_node("Sprite").set_flip_h(true)
-		$AnimationPlayer.play("walk")
-	elif Input.is_action_pressed("left"):
-		get_node("Sprite").set_flip_h(false)
-		$AnimationPlayer.play("walk")
-	else:
-		$AnimationPlayer.stop()
-		#print("stopping")
-
-
 # export (int) var move_speed = 800
 
 const MAX_MOVE_SPEED = 250
@@ -42,6 +29,32 @@ var start_shoot = false
 var shooting = false
 var power_level = 0
 var arrow_count = 0
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	if Input.is_action_pressed("right"):
+		get_node("Sprite").set_flip_h(true)
+		$AnimationPlayer.play("walk")
+	elif Input.is_action_pressed("left"):
+		get_node("Sprite").set_flip_h(false)
+		$AnimationPlayer.play("walk")
+	else:
+		$AnimationPlayer.stop()
+		#print("stopping")
+	
+	match (3-arrow_count):
+		0:
+			$Label.text = "0"
+			pass
+		1:
+			$Label.text = "I"
+			pass
+		2:
+			$Label.text = "II"
+			pass
+		3:
+			$Label.text = "III"
+			pass
 
 # gets and handles inputs
 func get_input():

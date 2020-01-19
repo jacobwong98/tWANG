@@ -85,3 +85,11 @@ stream = ExtResource( 5 )
 
 [node name="whoosh" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = -19.7
+margin_top = -36.23
+margin_right = 20.3
+margin_bottom = -22.23
+text = "III"
+align = 1

@@ -17,7 +17,7 @@ current = true
 [node name="Node2D" type="Node2D" parent="."]
 
 [node name="skybox" type="Sprite" parent="Node2D"]
-position = Vector2( 512.856, 232.505 )
+position = Vector2( 505.636, 260.483 )
 scale = Vector2( 8.71538, 1.91219 )
 texture = ExtResource( 2 )
 
@@ -27,7 +27,7 @@ scale = Vector2( 1.4, 1.4 )
 texture = ExtResource( 3 )
 
 [node name="rightcloud" type="Sprite" parent="Node2D"]
-position = Vector2( 917.937, 223.562 )
+position = Vector2( 917.034, 224.465 )
 scale = Vector2( 1.4, 1.4 )
 texture = ExtResource( 3 )
 
