@@ -1,8 +1,8 @@
 extends Node
 
-const DEFAULT_IP = '172.31.2.235'
-const DEFAULT_PORT = 31400
-const MAX_PLAYERS = 5
+const DEFAULT_IP = '127.0.0.1'
+const DEFAULT_PORT = 12345
+const MAX_PLAYERS = 2
 
 var players = { }
 var self_data = { name = '', position = Vector2(360, 180) }
