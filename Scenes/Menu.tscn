@@ -19,5 +19,13 @@ margin_right = 404.997
 margin_bottom = 137.675
 text = "Create"
 icon = ExtResource( 2 )
+
+[node name="SPButton" type="Button" parent="."]
+margin_left = 287.867
+margin_top = 304.826
+margin_right = 316.867
+margin_bottom = 324.826
+text = "SINGLE PLAYER"
 [connection signal="pressed" from="JoinButton" to="." method="_on_JoinButton_pressed"]
 [connection signal="pressed" from="CreateButton" to="." method="_on_CreateButton_pressed"]
+[connection signal="pressed" from="SPButton" to="." method="_on_SPButton_pressed"]
