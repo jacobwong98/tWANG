@@ -24,6 +24,9 @@ var lift_out = false
 
 func _ready():
 	$StuckTimer.connect("timeout", self, "_on_StuckTimer_timeout")
+	
+	#Enable particles when ready
+	$Particles2D.show()
 	pass
 
 func _process(delta):

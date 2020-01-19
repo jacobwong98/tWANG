@@ -27,6 +27,7 @@ Network="*res://Scripts/Network.gd"
 
 window/size/resizable=false
 window/size/fullscreen=true
+mouse_cursor/custom_image="res://Assets/custom_cursor.png"
 window/stretch/mode="viewport"
 
 [input]
