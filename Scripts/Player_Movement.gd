@@ -89,6 +89,7 @@ func get_input():
 	# space pressed to jump
 	if not double_jump_flag and Input.is_action_just_pressed('jump'):
 		velocity.y = -JUMP_FORCE
+		$whoosh.play(0)
 		
 		# arial jump used, change flag
 		if not grounded:
@@ -120,7 +121,7 @@ func moveChar(velocity):
 
 # shoot an arrow
 func try_shooting():
-	if Input.is_action_pressed("shoot") and arrow_count < 3:
+	if Input.is_action_pressed("shoot") and arrow_count < 3:	
 		if not $ArrowChargePivot/ArrowCharge.visible:
 			$ArrowChargePivot/ArrowCharge.show()
 			$ChargeTimer.start()
@@ -129,8 +130,7 @@ func try_shooting():
 		# Get local mouse pos then set arrowcharge angle to it
 		var mouse_pos = get_local_mouse_position()
 		$ArrowChargePivot.rotation = mouse_pos.angle() + PI/2
-		
-		$ArrowChargePivot/ArrowCharge.set_scale(Vector2(0.12*power_level/4,0.12*power_level/4)) 
+		$ArrowChargePivot/ArrowCharge.set_scale(Vector2(0.12*power_level/4,0.12*power_level/4))
 	
 	else:
 		if not shooting and start_shoot and arrow_count < 3:
@@ -140,6 +140,7 @@ func try_shooting():
 			
 			$Bow.shoot_arrow(get_position(), get_global_mouse_position(), power_level/4.0)
 			$ArrowCooldown.start()
+			$twang.play(0)
 		else:
 			# Have to do this because start_shoot doesnt reset any other way
 			start_shoot = false
@@ -161,7 +162,7 @@ func _on_arrow_pickup():
 	arrow_count -= 1
 	if arrow_count < 0:
 		arrow_count = 0
-	pass
+	$yoink.play(0)
 
 
 func init(nickname, start_position, is_slave):
