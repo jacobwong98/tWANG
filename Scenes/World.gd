@@ -1,6 +1,11 @@
 extends Node2D
 
+var shake_amount = 1.0
+var shaking = false
+
 func _ready():
+	$ShakeCameraTimer.connect("timeout", self, "_on_ShakeCameraTimer_timeout")
+	
 	get_tree().connect('network_peer_disconnected', self, '_on_player_disconnected')
 	get_tree().connect('server_disconnected', self, '_on_server_disconnected')
 	
@@ -10,9 +15,26 @@ func _ready():
 	add_child(new_player)
 	var info = Network.self_data
 	new_player.init(info.name, info.position, false)
+	
+	new_player.connect("large_fall", self, "_on_large_fall")
 
 func _on_player_disconnected(id):
 	get_node(str(id)).queue_free()
 
 func _on_server_disconnected():
 	get_tree().change_scene('res://interface/Menu.tscn')
+
+func _process(delta):
+	if shaking:
+	    $Camera2D.set_offset(Vector2( \
+	        512 + rand_range(-1.0, 1.0) * shake_amount, \
+	        300 + rand_range(-1.0, 1.0) * shake_amount \
+	    ))
+
+func _on_large_fall():
+	shaking = true
+	$ShakeCameraTimer.start()
+	pass
+
+func _on_ShakeCameraTimer_timeout():
+	shaking = false

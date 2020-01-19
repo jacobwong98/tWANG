@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+signal large_fall
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$ArrowCooldown.connect("timeout", self, "_on_ArrowCooldown_timeout")
@@ -67,6 +69,11 @@ func get_input():
 	
 	# reset double jump when on the ground
 	if grounded:
+		# when you land on the ground, you might of been going fast.
+		# shake the camera a bit if you hit the ground hard.
+		if velocity.y > 1100:
+			emit_signal("large_fall")
+		
 		velocity.y = 0
 		double_jump_flag = false
 		
