@@ -151,9 +151,10 @@ func _on_arrow_pickup():
 func init(nickname, start_position, is_slave):
 	#$GUI/Nickname.text = nickname
 	global_position = start_position
+	if is_network_master():
+		$Sprite.texture = load('res://Images/Shrek.jpg')
 	if is_slave:
 		global_position = start_position + Vector2(600, 200)
-		$Sprite.texture = load('res://Images/Shrek.jpg')
 
 func _on_ChargeTimer_timeout():
 	$ChargeTimer.start()
