@@ -1,12 +1,13 @@
 extends KinematicBody2D
 
 signal large_fall
+signal player_injured
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$ArrowCooldown.connect("timeout", self, "_on_ArrowCooldown_timeout")
 	$ChargeTimer.connect("timeout", self, "_on_ChargeTimer_timeout")
-	
+	$Area2D.connect("area_entered", self, "_on_Area2D_area_entered")
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -19,7 +20,7 @@ func _process(delta):
 		$AnimationPlayer.play("walk")
 	else:
 		$AnimationPlayer.stop()
-		print("stopping")
+		#print("stopping")
 
 
 # export (int) var move_speed = 800
@@ -181,4 +182,9 @@ func _on_ChargeTimer_timeout():
 
 func _on_ArrowCooldown_timeout():
 	shooting = false
+	pass
+
+func _on_Area2D_area_entered(area):
+	if area.name == "Area2DEnemy":
+		emit_signal("player_injured")
 	pass
