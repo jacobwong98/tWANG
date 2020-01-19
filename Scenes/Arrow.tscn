@@ -9,13 +9,13 @@ extents = Vector2( 11.9805, 1.52931 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 3.79568, 2.21313 )
 
-[sub_resource type="Gradient" id=4]
+[sub_resource type="Gradient" id=3]
 colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
 
-[sub_resource type="GradientTexture" id=5]
-gradient = SubResource( 4 )
+[sub_resource type="GradientTexture" id=4]
+gradient = SubResource( 3 )
 
-[sub_resource type="ParticlesMaterial" id=3]
+[sub_resource type="ParticlesMaterial" id=5]
 emission_shape = 1
 emission_sphere_radius = 1.85
 flag_disable_z = true
@@ -24,7 +24,7 @@ gravity = Vector3( 0, 0, 0 )
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale = 7.62
-color_ramp = SubResource( 5 )
+color_ramp = SubResource( 4 )
 
 [node name="Arrow" type="KinematicBody2D"]
 collision_layer = 2
@@ -54,4 +54,4 @@ visible = false
 rotation = -1.5708
 amount = 24
 local_coords = false
-process_material = SubResource( 3 )
+process_material = SubResource( 5 )
